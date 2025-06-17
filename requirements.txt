@@ -1,0 +1,4 @@
+# Core requirements for EverLight Archive Copilot Space
+# Add Streamlit, Flask, or other packages as needed for expansion
+
+# No strict dependencies required for base functionality
