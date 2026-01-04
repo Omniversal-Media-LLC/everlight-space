@@ -11,6 +11,11 @@ import asyncio
 from datetime import datetime
 
 
+# JSON-RPC 2.0 Error Codes
+JSONRPC_METHOD_NOT_FOUND = -32601
+JSONRPC_INTERNAL_ERROR = -32603
+
+
 class MCPServer:
     """
     Model Context Protocol server for the EverLight Aetherius Archive.
@@ -113,7 +118,7 @@ class MCPServer:
                     'jsonrpc': '2.0',
                     'id': request_id,
                     'error': {
-                        'code': -32601,
+                        'code': JSONRPC_METHOD_NOT_FOUND,
                         'message': f'Method not found: {method}'
                     }
                 }
@@ -129,7 +134,7 @@ class MCPServer:
                 'jsonrpc': '2.0',
                 'id': request_id,
                 'error': {
-                    'code': -32603,
+                    'code': JSONRPC_INTERNAL_ERROR,
                     'message': f'Internal error: {str(e)}'
                 }
             }

@@ -31,7 +31,7 @@ def test_base_model():
     assert not model.is_initialized()
     
     result = model.initialize()
-    assert result == True
+    assert result is True
     assert model.is_initialized()
     
     output = model.process("test input")

@@ -6,7 +6,7 @@ Provides foundation for all model implementations with mythic theming.
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 import json
 
 

@@ -10,6 +10,10 @@ import numpy as np
 from .base_model import BaseAetheriusModel
 
 
+# Constants
+MAX_SEED_VALUE = 2**32  # Maximum seed value for 32-bit systems
+
+
 class EmbeddingModel(BaseAetheriusModel):
     """
     Embedding model for transforming Archive texts into semantic vectors.
@@ -92,7 +96,7 @@ class EmbeddingModel(BaseAetheriusModel):
             List of floats representing the embedding vector
         """
         # Use simple character-based features as placeholder
-        np.random.seed(hash(text) % (2**32))
+        np.random.seed(hash(text) % MAX_SEED_VALUE)
         return np.random.randn(self.embedding_dim).tolist()
     
     def compute_similarity(self, embedding1: np.ndarray, 

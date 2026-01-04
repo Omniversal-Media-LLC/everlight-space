@@ -10,6 +10,11 @@ from .base_model import BaseAetheriusModel
 from .embeddings import EmbeddingModel
 
 
+# Constants for summarization
+SENTENCE_TERMINATORS = ['. ', '! ', '? ']
+MIN_SUMMARY_LENGTH_RATIO = 0.5  # Minimum ratio for sentence boundary detection
+
+
 class DocumentProcessor(BaseAetheriusModel):
     """
     Advanced document processor for the Aetherius Archive.
@@ -115,9 +120,9 @@ class DocumentProcessor(BaseAetheriusModel):
         
         if len(content) > max_length:
             # Try to end at a sentence boundary
-            for punct in ['. ', '! ', '? ']:
+            for punct in SENTENCE_TERMINATORS:
                 last_punct = summary.rfind(punct)
-                if last_punct > max_length // 2:
+                if last_punct > max_length * MIN_SUMMARY_LENGTH_RATIO:
                     summary = summary[:last_punct + 1]
                     break
             else:

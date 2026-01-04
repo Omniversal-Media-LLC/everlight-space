@@ -199,14 +199,15 @@ async def test_mcp_error_handling():
     return True
 
 
+import time
+
+
 async def test_performance():
     """Test performance with multiple documents."""
     print("\n" + "=" * 70)
     print("🧪 Integration Test: Performance")
     print("=" * 70)
     print()
-    
-    import time
     
     processor = DocumentProcessor(use_embeddings=True)
     processor.initialize()

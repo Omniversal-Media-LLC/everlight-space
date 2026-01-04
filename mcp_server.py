@@ -110,11 +110,17 @@ def setup_server(config: APIConfig, logs_dir: str) -> MCPServer:
     )
     
     # Register dynamic document resources
+    def create_document_handler(filename):
+        """Create a handler for a specific document."""
+        def handler():
+            return resource_handler.get_document_resource(filename)
+        return handler
+    
     for doc in tool_handler.list_documents():
         filename = doc['filename']
         server.register_resource(
             uri=f"archive://documents/{filename}",
-            handler=lambda f=filename: resource_handler.get_document_resource(f),
+            handler=create_document_handler(filename),
             name=f"Document: {filename}",
             description=f"Content of {filename} from the Archive"
         )
